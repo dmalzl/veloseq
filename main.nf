@@ -28,7 +28,6 @@ params.rsem_index       = getGenomeAttribute('rsem')
 params.hisat2_index     = getGenomeAttribute('hisat2')
 params.salmon_index     = getGenomeAttribute('salmon')
 params.kallisto_index   = getGenomeAttribute('kallisto')
-params.kbindex          = getGenomeAttribute('kbpython')
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
