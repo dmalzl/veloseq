@@ -15,6 +15,7 @@ include { MULTIQC_CUSTOM_BIOTYPE             } from '../../modules/local/multiqc
 //
 // SUBWORKFLOW: Consisting of a mix of local and nf-core/modules
 //
+include { KALLISTO_BUSTOOLS                     } from '../../subworkflows/local/kallisto_bustools'
 include { ALIGN_STAR                            } from '../../subworkflows/local/align_star'
 include { QUANTIFY_RSEM                         } from '../../subworkflows/local/quantify_rsem'
 include { BAM_DEDUP_UMI as BAM_DEDUP_UMI_STAR   } from '../../subworkflows/nf-core/bam_dedup_umi'
@@ -97,6 +98,7 @@ workflow RNASEQ {
     ch_sortmerna_index   // channel: path(sortmerna/index/)
     ch_splicesites       // channel: path(genome.splicesites.txt)
     make_sortmerna_index // boolean: Whether to create an index before running sortmerna
+    ch_kbindex
 
     main:
 
@@ -690,6 +692,11 @@ workflow RNASEQ {
             ch_versions = ch_versions.mix(DESEQ2_QC_PSEUDO.out.versions)
         }
     }
+
+    KALLISTO_BUSTOOLS (
+        ch_strand_inferred_filtered_fastq,
+        ch_kbindex
+    )
 
     //
     // Collate and save software versions

@@ -1,0 +1,8 @@
+name: kb
+channels:
+  - conda-forge
+dependencies:
+  - pip=25.0.1
+  - python=3.9.21
+  - pip:
+      - kb-python==0.29.1
