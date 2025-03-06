@@ -1,5 +1,5 @@
 process MERGE_ANNDATA {
-    tag "$meta.id"
+    tag "merge"
     label 'process_medium'
 
     conda "${moduleDir}/environment.yml"

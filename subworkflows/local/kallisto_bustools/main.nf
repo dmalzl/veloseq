@@ -14,7 +14,7 @@ workflow KALLISTO_BUSTOOLS {
     )
 
     MERGE_ANNDATA (
-        COUNT.out.h5ad.collect { it[1].flatten() }
+        COUNT.out.h5ad.collect { it[1] }
     )
     
     emit:
