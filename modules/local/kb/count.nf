@@ -4,7 +4,7 @@ process KALLISTO_BUSTOOLS_COUNT {
     clusterOptions '--constraint=avx2,amd' // this is to avoid illegal instruction error when streaming extension does not match binary
 
     conda "${moduleDir}/environment.yml"
-    container "dmalzl/veloseq:1.0.0"
+    container "docker.io/dmalzl/veloseq:1.0.0"
 
     input:
     tuple val(meta), path(reads, stageAs: "input*/*")
