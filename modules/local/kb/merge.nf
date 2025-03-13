@@ -3,7 +3,7 @@ process MERGE_ANNDATA {
     label 'process_medium'
 
     conda "${moduleDir}/environment.yml"
-    container "docker.io/dmalzl/veloseq:1.0.0"
+    container "docker.io/dmalzl/veloseq:1.0.1"
 
     input:
     path(h5ad)
