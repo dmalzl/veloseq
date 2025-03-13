@@ -1,7 +1,7 @@
 process KALLISTO_BUSTOOLS_COUNT {
     tag "$meta.id"
     label 'process_medium'
-    clusterOptions '--constraint=avx2,amd' // this is to avoid illegal instruction error when streaming extension does not match binary
+    // clusterOptions '--constraint=avx2,amd' // this is to avoid illegal instruction error when streaming extension does not match binary
 
     conda "${moduleDir}/environment.yml"
     container "docker.io/dmalzl/veloseq:1.0.1"
