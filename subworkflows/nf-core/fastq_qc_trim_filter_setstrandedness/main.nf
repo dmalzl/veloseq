@@ -156,12 +156,16 @@ workflow FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS {
         ch_reads = ch_reads.join(FQ_LINT.out.lint.map{it[0]})
     }
 
+    ch_filtered_reads
+        .join ( FQ_LINT.lint )
+        .map { it[0..-2] }
+        .set { ch_linted_reads }
     //
     // SUBWORKFLOW: Read QC, extract UMI and trim adapters with TrimGalore!
     //
     if (trimmer == 'trimgalore') {
         FASTQ_FASTQC_UMITOOLS_TRIMGALORE (
-            ch_filtered_reads,
+            ch_linted_reads,
             skip_fastqc,
             with_umi,
             skip_umi_extract,
@@ -184,7 +188,7 @@ workflow FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS {
     //
     if (trimmer == 'fastp') {
         FASTQ_FASTQC_UMITOOLS_FASTP (
-            ch_filtered_reads,
+            ch_linted_reads,
             skip_fastqc,
             with_umi,
             skip_umi_extract,
