@@ -157,7 +157,7 @@ workflow FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS {
     }
 
     ch_filtered_reads
-        .join ( FQ_LINT.lint )
+        .join ( FQ_LINT.out.lint )
         .map { it[0..-2] }
         .set { ch_linted_reads }
     //
